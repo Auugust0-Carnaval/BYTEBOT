@@ -1,0 +1,25 @@
+{
+  "name": "robo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nut-tree/nut-js": "^2.1.1",
+    "dotenv-safe": "^8.2.0",
+    "playwright": "^1.23.4",
+    "puppeteer": "^15.5.0",
+    "telegraf": "^4.8.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.23.4",
+    "nodemon": "^2.0.19",
+    "playwright-cli": "^0.180.0"
+  }
+}
