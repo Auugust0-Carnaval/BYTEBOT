@@ -1,14 +1,10 @@
 
+//Importacao das bibliotecas/Frameworks
 const { firefox } = require('playwright');
 
 const {keyboard} = require('@nut-tree/nut-js');
 
-const puppeteer = require('puppeteer');
-
-const { Telegraf }  = require('telegraf');
-
-
-
+const { Telegraf }  = require('telegraf'); // APU associada ao Telegram
 
 (async () => {
 
@@ -55,10 +51,16 @@ const { Telegraf }  = require('telegraf');
   var columnOne = 0;
   var columnTwo = 0;
   var columnThree = 0;
+  var duzia1 = 0;
+  var duzia2 = 0;
+  var duzia3 = 0;
+    
 
   async function SelectNumber(){
     let numberRollete =  await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('.roulette-history-itemei7kIRQ9CIgT5_luqPyA').first().allInnerTexts();
     let valor = parseInt(numberRollete);
+
+    //Adicionando logica solicitada para as colunas!
 
     for(var i = 1; i < 37; i = i + 3){
       var coluna1 = i;
@@ -66,9 +68,9 @@ const { Telegraf }  = require('telegraf');
       if(valor == coluna1){
         columnOne = columnOne + 1;
 
-        if(columnOne == 3){
+        if(columnOne == 8){
           let message = `Numero ${valor} é da coluna 1, foram sorteado(s) ${columnOne} número(s) desta coluna !!`;
-          bot.telegram.sendMessage(1830472691, message);
+          bot.telegram.sendMessage(5088599673, message);
           console.log('Mensagem enviada');
         }
         
@@ -81,9 +83,9 @@ const { Telegraf }  = require('telegraf');
       if(valor == coluna2){
         columnTwo = columnTwo + 1;
 
-        if(columnTwo == 3){
+        if(columnTwo == 8){
           let message = `Numero ${valor} é da coluna 2, foram sorteado(s) ${columnTwo} número(s) desta coluna !!`
-          bot.telegram.sendMessage(1830472691, message);
+          bot.telegram.sendMessage(5088599673, message);
           console.log('Mensagem enviada');
         }
       }
@@ -95,17 +97,72 @@ const { Telegraf }  = require('telegraf');
       if(valor == coluna3){
         columnThree = columnThree + 1;
 
-        if(columnThree == 3){
+        if(columnThree == 8){
           message = `Numero ${valor} é da coluna 3, foram sorteado(s) ${columnThree} número(s) desta coluna !!`
-          bot.telegram.sendMessage(1830472691, message);
+          bot.telegram.sendMessage(5088599673, message);
           console.log('Mensagem enviada');
         }
        
       }
     }
+
+  // Adicionando logica solicitada para as dúzias
+
+  for(var i = 1; i <= 12; i++){
+    let firstDozen = i;
+
+    if(valor == firstDozen){
+      duzia1 = duzia1 + 1;
+
+      if(duzia1 == 8){
+        let message = `Foram sorteados ${duzia1} números da primeria duzia !!!`;
+        bot.telegra.sendMessage(message);
+        console.log('Messagem enviada referente a primeria duzia');
+      }
+    }
+    
+  }
+
+  for(var i = 13; i <= 24; i++){
+    let secondDozen = i;
+
+    if(valor == secondDozen){
+      duzia2 = duzia2 + 1;
+
+      if(duzia2 == 8){
+        let message = `Foram sorteados ${duzia2} números da segunda duzia !!!`;
+        bot.telegra.sendMessage(message);
+        console.log('Messagem enviada referente a segunda duzia');
+      }
+    }
+  }
+
+  for(var i = 25; i <= 36; i++){
+    let thirdDozen = i;
+
+    if(valor == thirdDozen){
+      duzia3 = duzia3  + 1;
+
+      if(duzia3 == 8){
+        let message = `Foram sorteados ${duzia3} números da terceira duzia !!!`;
+        bot.telegra.sendMessage(message);
+        console.log('Messagem enviada referente a terceira duzia');
+      }
+    }
+  }
+
+  //Condicao de for sorteado o valor = 0
+  if(valor == 0){
+    let message = `O número ${valor} foi sorteado, não pertence a nenhuma coluna ou duzia 🤔`;
+    bot.telegram.sendMessage(5088599673, message);
+    console.log('Mensagem enviada');
+  }
+
+    console.log(`Numero sorteado foi: ${valor}`);
   }
 
   setInterval(SelectNumber, 23000); 
+
 })();
 
 
