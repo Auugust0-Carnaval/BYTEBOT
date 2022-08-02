@@ -1,4 +1,7 @@
 
+
+"use strict"
+
 //Importacao das bibliotecas/Frameworks
 const { firefox } = require('playwright');
 
@@ -78,8 +81,9 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == coluna1){
           columnOne = columnOne + 1;
 
-          if(columnOne == 8 || columnOne == 4 ){
-            let message = `Numero ${valor} é da coluna 1, foram sorteado(s) ${columnOne} número(s) desta coluna !!`;
+          if(columnOne == 8 || columnOne == 4 || columnOne > 8 ){
+            let message = `💎Foram repetidos ${columnOne} número(s) da primeira coluna !! 💎`;
+            // bot.telegram.sendMessage(1443534137, message);
             bot.telegram.sendMessage(5088599673, message);
             console.log('Mensagem enviada');
           }
@@ -92,8 +96,9 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == coluna2){
           columnTwo = columnTwo + 1;
 
-          if(columnTwo == 8 || columnTwo == 4){
-            let message = `Numero ${valor} é da coluna 2, foram sorteado(s) ${columnTwo} número(s) desta coluna !!`
+          if(columnTwo == 8 || columnTwo == 4 || columnTwo > 8){
+            let message = `💎Foram repetidos ${columnTwo} número(s) da segunda coluna !! 💎`
+            // bot.telegram.sendMessage(1443534137, message);
             bot.telegram.sendMessage(5088599673, message);
             console.log('Mensagem enviada');
           }
@@ -106,8 +111,9 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == coluna3){
           columnThree = columnThree + 1;
 
-          if(columnThree == 8 || columnThree == 4){
-            message = `Numero ${valor} é da coluna 3, foram sorteado(s) ${columnThree} número(s) desta coluna !!`
+          if(columnThree == 8 || columnThree == 4 || columnThree > 8){
+            message = `💎Foram repetidos ${columnThree} número(s) da terceira coluna !! 💎`
+            // bot.telegram.sendMessage(1443534137, message);
             bot.telegram.sendMessage(5088599673, message);
             console.log('Mensagem enviada');
           }
@@ -122,9 +128,10 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == firstDozen){
           duzia1 = duzia1 + 1;
 
-          if(duzia1 == 8 || duzia1 == 3){
-            let message = `Foram sorteados ${duzia1} números da primeria duzia !!!`;
-            bot.telegram.sendMessage(5088599673,message);
+          if(duzia1 >= 8 || duzia1 == 3 || duzia1 > 8){
+            let message = `🎈 Foram sorteados ${duzia1} números da primeria duzia !!! 🎈`;
+            // bot.telegram.sendMessage(1443534137, message);
+            bot.telegram.sendMessage(5088599673, message);
             console.log('Messagem enviada referente a primeria duzia');
           }
         }
@@ -136,9 +143,10 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == secondDozen){
           duzia2 = duzia2 + 1;
 
-          if(duzia2 == 8 || duzia2 == 3){
-            let message = `Foram sorteados ${duzia2} números da segunda duzia !!!`;
-            bot.telegram.sendMessage(5088599673,message);
+          if(duzia2 >= 8 || duzia2 == 3 || duzia2 > 8){
+            let message = `🎈 Foram sorteados ${duzia2} números da segunda duzia !!! 🎈`;
+            // bot.telegram.sendMessage(1443534137, message);
+            bot.telegram.sendMessage(5088599673, message);
             console.log('Messagem enviada referente a segunda duzia');
           }
         }
@@ -150,8 +158,9 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == thirdDozen){
           duzia3 = duzia3  + 1;
 
-          if(duzia3 == 8 || duzia3 == 3){
-            let message = `Foram sorteados ${duzia3} números da terceira duzia !!!`;
+          if(duzia3 >= 8 || duzia3 == 3 || duzia3 > 8 ){
+            let message = `🎈 Foram sorteados ${duzia3} números da terceira duzia !!! 🎈`;
+            // bot.telegram.sendMessage(1443534137, message);
             bot.telegram.sendMessage(5088599673, message);
             console.log('Messagem enviada referente a terceira duzia');
           }
@@ -161,6 +170,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
       //Condicao de for sorteado o valor = 0
       if(valor == 0){
         let message = `O número ${valor} foi sorteado, não pertence a nenhuma coluna ou duzia 🤔`;
+        // bot.telegram.sendMessage(1443534137, message);
         bot.telegram.sendMessage(5088599673, message);
         console.log('Mensagem enviada');
       }
