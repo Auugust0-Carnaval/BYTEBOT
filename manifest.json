@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "version": "0.0.1",
+    "name": "BYTE EXTENSION",
+    "description": "Extensão de vereficação de jogos de aposta (BET365)",
+    "author": "Augusto de oliveira carnaval",
+    "content_scripts": [{
+        "matches" :  ["https://livecasino.bet365.com/home/br"],
+        "js": ["index.js"]
+    }]
+}
