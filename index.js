@@ -18,7 +18,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
   bot.hears('Ola', (ctx) => ctx.reply('Bem vindo ao BYTE jogadores(as) 😜')); // Ao digitar Ola e retornado um messageBot
   bot.launch();
 
-  keyboard.config.autoDelayMs = 1.0; // tempo que sera escrito na tela
+  keyboard.config.autoDelayMs = 1.5; // tempo que sera escrito na tela
 
   let username = 'Tchu_20' // usuario de acesso
   let passWord = '@Tchu523435' // senha
@@ -48,9 +48,9 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
   await page.waitForURL('https://livecasino.bet365.com/Play/LiveRoulette');
   
   await page.locator('button:has-text("Continuar")').click();
-
-  await page.waitForTimeout(28000);
-
+  
+  await page.waitForTimeout(25000);
+  
   //Variaveis globais
   var columnOne = 0;
   var columnTwo = 0;
@@ -61,13 +61,13 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
 
   var valorAntigo = 0;
 
+
   async function SelectNumber(){
     let numberRollete =  await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('.roulette-history-itemei7kIRQ9CIgT5_luqPyA').first().allInnerTexts();
     let valor = parseInt(numberRollete);
 
     if(valorAntigo == valor){
-      valorAntigo = valor;
-      console.log('duplicou numero!');
+      valorAntigo = valor;    
     }
     else{
       
@@ -81,7 +81,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == coluna1){
           columnOne = columnOne + 1;
 
-          if(columnOne == 8 || columnOne == 4 || columnOne > 8 ){
+          if(columnOne == 8 || columnOne == 5 || columnOne > 8 ){
             let message = `💎Foram repetidos ${columnOne} número(s) da primeira coluna !! 💎`;
             // bot.telegram.sendMessage(1443534137, message);
             bot.telegram.sendMessage(5088599673, message);
@@ -96,7 +96,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == coluna2){
           columnTwo = columnTwo + 1;
 
-          if(columnTwo == 8 || columnTwo == 4 || columnTwo > 8){
+          if(columnTwo == 8 || columnTwo == 5 || columnTwo > 8){
             let message = `💎Foram repetidos ${columnTwo} número(s) da segunda coluna !! 💎`
             // bot.telegram.sendMessage(1443534137, message);
             bot.telegram.sendMessage(5088599673, message);
@@ -111,8 +111,8 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == coluna3){
           columnThree = columnThree + 1;
 
-          if(columnThree == 8 || columnThree == 4 || columnThree > 8){
-            message = `💎Foram repetidos ${columnThree} número(s) da terceira coluna !! 💎`
+          if(columnThree == 8 || columnThree == 5 || columnThree > 8){
+            let message = `💎Foram repetidos ${columnThree} número(s) da terceira coluna !! 💎`;
             // bot.telegram.sendMessage(1443534137, message);
             bot.telegram.sendMessage(5088599673, message);
             console.log('Mensagem enviada');
@@ -128,7 +128,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == firstDozen){
           duzia1 = duzia1 + 1;
 
-          if(duzia1 >= 8 || duzia1 == 3 || duzia1 > 8){
+          if(duzia1 >= 8 || duzia1 == 5){
             let message = `🎈 Foram sorteados ${duzia1} números da primeria duzia !!! 🎈`;
             // bot.telegram.sendMessage(1443534137, message);
             bot.telegram.sendMessage(5088599673, message);
@@ -143,7 +143,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == secondDozen){
           duzia2 = duzia2 + 1;
 
-          if(duzia2 >= 8 || duzia2 == 3 || duzia2 > 8){
+          if(duzia2 >= 8 || duzia2 == 5){
             let message = `🎈 Foram sorteados ${duzia2} números da segunda duzia !!! 🎈`;
             // bot.telegram.sendMessage(1443534137, message);
             bot.telegram.sendMessage(5088599673, message);
@@ -158,7 +158,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         if(valor == thirdDozen){
           duzia3 = duzia3  + 1;
 
-          if(duzia3 >= 8 || duzia3 == 3 || duzia3 > 8 ){
+          if(duzia3 >= 8 || duzia3 == 5){
             let message = `🎈 Foram sorteados ${duzia3} números da terceira duzia !!! 🎈`;
             // bot.telegram.sendMessage(1443534137, message);
             bot.telegram.sendMessage(5088599673, message);
@@ -176,13 +176,18 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
       }
       console.log(`Numero sorteado foi: ${valor}`);
     }  
-      
+
   }
 
-  async function clickTimer(){
-    await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('li:nth-child(4)').click();
+  async function ScriptAsync(){
+      console.log('executando function async');
+      await page.waitForTimeout(2000);
+      await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('button:has-text("Ok")').click();
+      await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('text=bet365 Roulette').first().click();
+      await page.waitForTimeout(10000);   
   }
 
-  setInterval(SelectNumber, 23000); 
-  setInterval(clickTimer, 15000);
+  setInterval(SelectNumber, 1000); 
+  setInterval(ScriptAsync, 360000 );
+
 })();
