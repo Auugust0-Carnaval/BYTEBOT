@@ -11,6 +11,8 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
 
 (async () => {
 
+  console.log('BYTE foi iniciado');
+
   let tokenTelegram = "5458875943:AAGQDcfTylsL81s6AClA7NOQyXa75KUN3yY";
 
   const bot = new Telegraf(tokenTelegram); // inicializa a instancia de comunicacão com o bot do Telegram pelo token
