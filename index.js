@@ -18,9 +18,9 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
   bot.hears('Ola', (ctx) => ctx.reply('Bem vindo ao BYTE jogadores(as) 😜')); // Ao digitar Ola e retornado um messageBot
   bot.launch();
 
-  keyboard.config.autoDelayMs = 1.5; // tempo que sera escrito na tela
+  keyboard.config.autoDelayMs = 1.0; // tempo que sera escrito na tela
 
-  let username = 'Tchu_20' // usuario de acesso
+  let username = 'Feh_20' // usuario de acesso
   let passWord = '@Tchu523435' // senha
 
   const browser = await firefox.launch({headless: false});
@@ -34,6 +34,8 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
   await page.locator('[placeholder="Usuário"]').click();
 
   await keyboard.type(username);
+
+  await page.waitForTimeout(1000);
 
   await page.locator('[placeholder="Senha"]').click();
   
@@ -176,18 +178,38 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
       }
       console.log(`Numero sorteado foi: ${valor}`);
     }  
-
   }
 
+  var timer = 380000;
+
   async function ScriptAsync(){
-      console.log('executando function async');
+
+    console.log('executando funcao');
+    if(timer == 380000){
+
+      timer = timer + 60000;
+
       await page.waitForTimeout(2000);
       await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('button:has-text("Ok")').click();
       await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('text=bet365 Roulette').first().click();
-      await page.waitForTimeout(10000);   
+      // await page.waitForTimeout(24000);  
+    }
+    else{
+      await page.waitForTimeout(2000);
+      await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('button:has-text("Ok")').click();
+      await page.waitForTimeout(25000);
+      await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('button:has-text("Ok")').click();
+
+      await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('text=bet365 Roulette').first().click();
+      // await page.waitForTimeout(24000);  
+    }  
   }
 
+  var timerInterval = timer;
+
+  console.log(`novo timer: ${timerInterval}`);
+
   setInterval(SelectNumber, 1000); 
-  setInterval(ScriptAsync, 360000 );
+  setInterval(ScriptAsync, timerInterval);
 
 })();
