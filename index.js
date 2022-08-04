@@ -1,8 +1,7 @@
-
-
-"use strict"
-
 //Importacao das bibliotecas/Frameworks
+
+require('http').createServer().listen(3000);
+
 const { firefox } = require('playwright');
 
 const {keyboard} = require('@nut-tree/nut-js');
