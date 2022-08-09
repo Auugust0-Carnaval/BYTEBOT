@@ -108,8 +108,6 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
 
                 if(arrayColunm1.indexOf(valueColunm1[0])>=0){
                     columnOne = columnOne + 1;
-                    console.log('existe na coluna 1');
-
                     if(columnOne == 5 || columnOne >= 8){
                         let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${columnOne} numeros da 1 coluna repetidos`;
                         bot.telegram.sendMessage(1624289481, message);
@@ -122,7 +120,6 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
                     }
                 }
                 else{
-                    console.log('nao existe na coluna 1');
                     valueColunm1.splice(0, valueColunm1.length); // zerando o array para = []
                     columnOne = 0;
                 }
@@ -138,8 +135,6 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
 
                 if(arrayColunm2.indexOf(valueColunm2[0])>=0){
                     columnTwo = columnTwo + 1;
-                    console.log('existe na coluna 2');
-
                     if(columnTwo == 5 || columnTwo >= 8){
                         let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${columnTwo} numeros da 2 coluna repetidos`;
                         bot.telegram.sendMessage(1624289481, message);
@@ -152,7 +147,6 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
                     }
                 }
                 else{
-                    console.log('nao existe na coluna 2');
                     valueColunm2.splice(0, valueColunm2.length); // zerando o array para = []
                     columnTwo = 0;
                 }
@@ -167,8 +161,6 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
 
                 if(arrayColunm3.indexOf(valueColunm3[0])>=0){
                     columnThree = columnThree + 1;
-                    console.log('existe na coluna 3');
-
                     if(columnThree == 5 || columnThree >= 8){
                         let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${columnThree} numeros da 3 coluna repetidos`;
                         bot.telegram.sendMessage(1624289481, message);
@@ -181,7 +173,6 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
                     }
                 }
                 else{
-                    console.log('nao existe na coluna 3');
                     valueColunm3.splice(0, valueColunm3.length); // zerando o array para = []
                     columnThree = 0;
                 }
@@ -195,9 +186,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
                 }
 
                 if(arrayDozen1.indexOf(valueDuzia1[0])>=0){
-                    duzia1 = duzia1 + 1;
-                    console.log('existe na duzia 1');
-                    
+                    duzia1 = duzia1 + 1;                    
                     if(duzia1 == 5 || duzia1 >= 8){
                         let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${duzia1} numeros da 1 duzia repetidos`;
                         bot.telegram.sendMessage(1624289481, message);
@@ -210,7 +199,6 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
                     }
                 }
                 else{
-                    console.log('nao existe na duzia 1');
                     valueDuzia1.splice(0, valueDuzia1.length);
                     duzia1 = 0;
                 }
@@ -224,9 +212,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
                 }
 
                 if(arrayDozen2.indexOf(valueDuzia2[0])>=0){
-                    duzia2 = duzia2 + 1;
-                    console.log('existe na duzia 2');
-                    
+                    duzia2 = duzia2 + 1;                    
                     if(duzia2 == 5 || duzia2 >= 8){
                         let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${duzia2} numeros da 2 duzia repetidos`;
                         bot.telegram.sendMessage(1624289481, message);
@@ -239,7 +225,6 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
                     }
                 }
                 else{
-                    console.log('nao existe na duzia 2');
                     valueDuzia2.splice(0, valueDuzia2.length);
                     duzia1 = 0;
                 }
@@ -253,9 +238,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
                 }
 
                 if(arrayDozen3.indexOf(valueDuzia3[0])>=0){
-                    duzia3 = duzia3 + 1;
-                    console.log('existe na duzia 3');
-                    
+                    duzia3 = duzia3 + 1;                    
                     if(duzia3 == 5 || duzia3 >= 8){
                         let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${duzia3} numeros da 3 duzia repetidos`;
                         bot.telegram.sendMessage(1624289481, message);
@@ -268,22 +251,21 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
                     }
                 }
                 else{
-                    console.log('nao existe na duzia 3');
                     valueDuzia3.splice(0, valueDuzia3.length);
                     duzia3 = 0;
                 }
             }
         }  
 
-        async function again(){
-            console.log('funcao de retorno iniciada!');
-            await page.locator('img[alt="Lobby"]').click();
-            await page.locator('text=Fechar').click();
-            await page.locator('.live-casino-slider-game__image').first().click();
-        }
+        // async function again(){
+        //     console.log('funcao de retorno iniciada!');
+        //     await page.locator('img[alt="Lobby"]').click();
+        //     await page.locator('text=Fechar').click();
+        //     await page.locator('.live-casino-slider-game__image').first().click();
+        // }
 
         setInterval(SelectNumber, 1000); 
-        setInterval(again, 300000);
+        // setInterval(again, 300000);
     }
   catch{
     
