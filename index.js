@@ -257,15 +257,17 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
             }
         }  
 
-        // async function again(){
-        //     console.log('funcao de retorno iniciada!');
-        //     await page.locator('img[alt="Lobby"]').click();
-        //     await page.locator('text=Fechar').click();
-        //     await page.locator('.live-casino-slider-game__image').first().click();
-        // }
-
-        setInterval(SelectNumber, 1000); 
-        // setInterval(again, 300000);
+        var numberCaught = setInterval(SelectNumber, 1000);
+        
+        setInterval(again, 10000);
+    
+        async function again(){
+            clearInterval(numberCaught);
+            console.log('funcao de retorno iniciada!');
+            await page.locator('img[alt="Lobby"]').click();
+            await page.locator('text=Fechar').click();
+            await page.locator('.live-casino-slider-game__image').first().click();
+        }
     }
   catch{
     
@@ -273,3 +275,18 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
 })();
 
 
+let variavel;
+
+
+
+function consoleLog() {
+    console.log("Ola mundo!");
+}
+
+variavel = setInterval(consoleLog, 1000);
+
+function pararFuncao() {
+    clearInterval(variavel);
+}
+
+setInterval(pararFuncao, 5000);
