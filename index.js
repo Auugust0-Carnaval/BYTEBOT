@@ -87,206 +87,190 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         var duzia2 = 0
         var duzia3 = 0
 
-        async function SelectNumber(){
-
-            let numberRollete =  await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('.roulette-history-itemei7kIRQ9CIgT5_luqPyA').first().allInnerTexts();
-            let valor = parseInt(numberRollete);
-
-            if(valorAntigo == valor){
-                valorAntigo = valor;
-            }
-            else{
-                valorAntigo = valor; 
-                console.log(`Numero sorteado: ${valor}`);
-
-                //TODO PRIMERA ALGORITMO DA PRIMEIRA COLUNA
-                valueColunm1.unshift(valor);
-
-                for(var i = 1; i < 37; i = i + 3){
-                    arrayColunm1.push(i); // nuemros da coluna 1
-                }
-
-                if(arrayColunm1.indexOf(valueColunm1[0])>=0){
-                    columnOne = columnOne + 1;
-                    if(columnOne == 5 || columnOne >= 8){
-                        let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${columnOne} numeros da 1 coluna repetidos`;
-                        bot.telegram.sendMessage(1624289481, message);
-                        bot.telegram.sendMessage(1443534137, message);
-                        bot.telegram.sendMessage(5088599673, message);
-                        console.log('Mensagem enviada');
-                    }
-                    else{
-                        return;
-                    }
-                }
-                else{
-                    valueColunm1.splice(0, valueColunm1.length); // zerando o array para = []
-                    columnOne = 0;
-                }
+        var timer = 0;
 
 
-                //TODO ALGORITMO DA SEGUNDA COLUNA
 
-                valueColunm2.unshift(valor);
-
-                for(var i = 2; i < 37; i = i + 3){
-                    arrayColunm2.push(i);
-                }
-
-                if(arrayColunm2.indexOf(valueColunm2[0])>=0){
-                    columnTwo = columnTwo + 1;
-                    if(columnTwo == 5 || columnTwo >= 8){
-                        let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${columnTwo} numeros da 2 coluna repetidos`;
-                        bot.telegram.sendMessage(1624289481, message);
-                        bot.telegram.sendMessage(1443534137, message);
-                        bot.telegram.sendMessage(5088599673, message);
-                        console.log('Mensagem enviada');
-                    }
-                    else{
-                        return; 
-                    }
-                }
-                else{
-                    valueColunm2.splice(0, valueColunm2.length); // zerando o array para = []
-                    columnTwo = 0;
-                }
-
-                //TODO ALGORITMO DA TERCEIRA COLUNA
-
-                valueColunm3.unshift(valor);
-
-                for(var i = 3; i < 37; i = i + 3){
-                    arrayColunm3.push(i);
-                }
-
-                if(arrayColunm3.indexOf(valueColunm3[0])>=0){
-                    columnThree = columnThree + 1;
-                    if(columnThree == 5 || columnThree >= 8){
-                        let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${columnThree} numeros da 3 coluna repetidos`;
-                        bot.telegram.sendMessage(1624289481, message);
-                        bot.telegram.sendMessage(1443534137, message);
-                        bot.telegram.sendMessage(5088599673, message);
-                        console.log('Mensagem enviada');
-                    }
-                    else{
-                        return;
-                    }
-                }
-                else{
-                    valueColunm3.splice(0, valueColunm3.length); // zerando o array para = []
-                    columnThree = 0;
-                }
-
-                //TODO PRIMEIRA DUZIA
-
-                valueDuzia1.unshift(valor)
-
-                for(var i = 1; i <= 12; i++){
-                    arrayDozen1.push(i);
-                }
-
-                if(arrayDozen1.indexOf(valueDuzia1[0])>=0){
-                    duzia1 = duzia1 + 1;                    
-                    if(duzia1 == 5 || duzia1 >= 8){
-                        let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${duzia1} numeros da 1 duzia repetidos`;
-                        bot.telegram.sendMessage(1624289481, message);
-                        bot.telegram.sendMessage(1443534137, message);
-                        bot.telegram.sendMessage(5088599673, message);
-                        console.log('Mensagem enviada');   
-                    }
-                    else{
-                        return;
-                    }
-                }
-                else{
-                    valueDuzia1.splice(0, valueDuzia1.length);
-                    duzia1 = 0;
-                }
-
-                // TODO SEGUNDA DUZIA
-
-                valueDuzia2.unshift(valor)
-
-                for(var i = 13; i <= 24; i++){
-                    arrayDozen2.push(i);
-                }
-
-                if(arrayDozen2.indexOf(valueDuzia2[0])>=0){
-                    duzia2 = duzia2 + 1;                    
-                    if(duzia2 == 5 || duzia2 >= 8){
-                        let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${duzia2} numeros da 2 duzia repetidos`;
-                        bot.telegram.sendMessage(1624289481, message);
-                        bot.telegram.sendMessage(1443534137, message);
-                        bot.telegram.sendMessage(5088599673, message);
-                        console.log('Mensagem enviada');   
-                    }
-                    else{
-                        return;
-                    }
-                }
-                else{
-                    valueDuzia2.splice(0, valueDuzia2.length);
-                    duzia1 = 0;
-                }
-
-                //TODO TERCEIRA DUZIA
-
-                valueDuzia3.unshift(valor)
-
-                for(var i = 25; i <= 36; i++){
-                    arrayDozen3.push(i);
-                }
-
-                if(arrayDozen3.indexOf(valueDuzia3[0])>=0){
-                    duzia3 = duzia3 + 1;                    
-                    if(duzia3 == 5 || duzia3 >= 8){
-                        let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${duzia3} numeros da 3 duzia repetidos`;
-                        bot.telegram.sendMessage(1624289481, message);
-                        bot.telegram.sendMessage(1443534137, message);
-                        bot.telegram.sendMessage(5088599673, message);
-                        console.log('Mensagem enviada');   
-                    }
-                    else{
-                        return;
-                    }
-                }
-                else{
-                    valueDuzia3.splice(0, valueDuzia3.length);
-                    duzia3 = 0;
-                }
-            }
-        }  
-
-        var numberCaught = setInterval(SelectNumber, 1000);
-        
-        setInterval(again, 10000);
+        if(timer == 120){
+                console.log('funcao de retorno iniciada!');
+                await page.locator('img[alt="Lobby"]').click();
+                await page.locator('text=Fechar').click();
+                await page.locator('.live-casino-slider-game__image').first().click();
+                timer = 0;
+        }
+        else{
+        setInterval(
+            async function SelectNumber(){
+                timer = timer + 1;    
+                let numberRollete =  await page.frameLocator('#inline-games-page-component__content iframe').frameLocator('#gamecontent').locator('.roulette-history-itemei7kIRQ9CIgT5_luqPyA').first().allInnerTexts();
+                let valor = parseInt(numberRollete);
     
-        async function again(){
-            clearInterval(numberCaught);
-            console.log('funcao de retorno iniciada!');
-            await page.locator('img[alt="Lobby"]').click();
-            await page.locator('text=Fechar').click();
-            await page.locator('.live-casino-slider-game__image').first().click();
+                if(valorAntigo == valor){
+                    valorAntigo = valor;
+                }
+                else{
+                    valorAntigo = valor; 
+                    console.log(`Numero sorteado: ${valor}`);
+    
+                    //TODO PRIMERA ALGORITMO DA PRIMEIRA COLUNA
+                    valueColunm1.unshift(valor);
+    
+                    for(var i = 1; i < 37; i = i + 3){
+                        arrayColunm1.push(i); // nuemros da coluna 1
+                    }
+    
+                    if(arrayColunm1.indexOf(valueColunm1[0])>=0){
+                        columnOne = columnOne + 1;
+                        if(columnOne == 5 || columnOne >= 8){
+                            let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${columnOne} numeros da 1 coluna repetidos`;
+                            bot.telegram.sendMessage(1624289481, message);
+                            bot.telegram.sendMessage(1443534137, message);
+                            bot.telegram.sendMessage(5088599673, message);
+                            console.log('Mensagem enviada');
+                        }
+                        else{
+                            return;
+                        }
+                    }
+                    else{
+                        valueColunm1.splice(0, valueColunm1.length); // zerando o array para = []
+                        columnOne = 0;
+                    }
+    
+                    //TODO ALGORITMO DA SEGUNDA COLUNA
+    
+                    valueColunm2.unshift(valor);
+    
+                    for(var i = 2; i < 37; i = i + 3){
+                        arrayColunm2.push(i);
+                    }
+    
+                    if(arrayColunm2.indexOf(valueColunm2[0])>=0){
+                        columnTwo = columnTwo + 1;
+                        if(columnTwo == 5 || columnTwo >= 8){
+                            let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${columnTwo} numeros da 2 coluna repetidos`;
+                            bot.telegram.sendMessage(1624289481, message);
+                            bot.telegram.sendMessage(1443534137, message);
+                            bot.telegram.sendMessage(5088599673, message);
+                            console.log('Mensagem enviada');
+                        }
+                        else{
+                            return; 
+                        }
+                    }
+                    else{
+                        valueColunm2.splice(0, valueColunm2.length); // zerando o array para = []
+                        columnTwo = 0;
+                    }
+    
+                    //TODO ALGORITMO DA TERCEIRA COLUNA
+    
+                    valueColunm3.unshift(valor);
+    
+                    for(var i = 3; i < 37; i = i + 3){
+                        arrayColunm3.push(i);
+                    }
+    
+                    if(arrayColunm3.indexOf(valueColunm3[0])>=0){
+                        columnThree = columnThree + 1;
+                        if(columnThree == 5 || columnThree >= 8){
+                            let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${columnThree} numeros da 3 coluna repetidos`;
+                            bot.telegram.sendMessage(1624289481, message);
+                            bot.telegram.sendMessage(1443534137, message);
+                            bot.telegram.sendMessage(5088599673, message);
+                            console.log('Mensagem enviada');
+                        }
+                        else{
+                            return;
+                        }
+                    }
+                    else{
+                        valueColunm3.splice(0, valueColunm3.length); // zerando o array para = []
+                        columnThree = 0;
+                    }
+    
+                    //TODO PRIMEIRA DUZIA
+    
+                    valueDuzia1.unshift(valor)
+    
+                    for(var i = 1; i <= 12; i++){
+                        arrayDozen1.push(i);
+                    }
+    
+                    if(arrayDozen1.indexOf(valueDuzia1[0])>=0){
+                        duzia1 = duzia1 + 1;                    
+                        if(duzia1 == 5 || duzia1 >= 8){
+                            let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${duzia1} numeros da 1 duzia repetidos`;
+                            bot.telegram.sendMessage(1624289481, message);
+                            bot.telegram.sendMessage(1443534137, message);
+                            bot.telegram.sendMessage(5088599673, message);
+                            console.log('Mensagem enviada');   
+                        }
+                        else{
+                            return;
+                        }
+                    }
+                    else{
+                        valueDuzia1.splice(0, valueDuzia1.length);
+                        duzia1 = 0;
+                    }
+    
+                    // TODO SEGUNDA DUZIA
+    
+                    valueDuzia2.unshift(valor)
+    
+                    for(var i = 13; i <= 24; i++){
+                        arrayDozen2.push(i);
+                    }
+    
+                    if(arrayDozen2.indexOf(valueDuzia2[0])>=0){
+                        duzia2 = duzia2 + 1;                    
+                        if(duzia2 == 5 || duzia2 >= 8){
+                            let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${duzia2} numeros da 2 duzia repetidos`;
+                            bot.telegram.sendMessage(1624289481, message);
+                            bot.telegram.sendMessage(1443534137, message);
+                            bot.telegram.sendMessage(5088599673, message);
+                            console.log('Mensagem enviada');   
+                        }
+                        else{
+                            return;
+                        }
+                    }
+                    else{
+                        valueDuzia2.splice(0, valueDuzia2.length);
+                        duzia1 = 0;
+                    }
+    
+                    //TODO TERCEIRA DUZIA
+    
+                    valueDuzia3.unshift(valor)
+    
+                    for(var i = 25; i <= 36; i++){
+                        arrayDozen3.push(i);
+                    }
+    
+                    if(arrayDozen3.indexOf(valueDuzia3[0])>=0){
+                        duzia3 = duzia3 + 1;                    
+                        if(duzia3 == 5 || duzia3 >= 8){
+                            let message = `🎯Rollete (BET365)🎯 \n🤖Analise da mesa🤖 \n${duzia3} numeros da 3 duzia repetidos`;
+                            bot.telegram.sendMessage(1624289481, message);
+                            bot.telegram.sendMessage(1443534137, message);
+                            bot.telegram.sendMessage(5088599673, message);
+                            console.log('Mensagem enviada');   
+                        }
+                        else{
+                            return;
+                        }
+                    }
+                    else{
+                        valueDuzia3.splice(0, valueDuzia3.length);
+                        duzia3 = 0;
+                    }
+                }
+            },1000);
         }
     }
   catch{
-    
   }
 })();
 
-
-let variavel;
-
-
-
-function consoleLog() {
-    console.log("Ola mundo!");
-}
-
-variavel = setInterval(consoleLog, 1000);
-
-function pararFuncao() {
-    clearInterval(variavel);
-}
-
-setInterval(pararFuncao, 5000);
