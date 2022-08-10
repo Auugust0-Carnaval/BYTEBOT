@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 
-const { firefox, selectors } = require('playwright');
+const { chromium, selectors } = require('playwright');
 
 const {keyboard, mouse, down, imageResource} = require('@nut-tree/nut-js');
 
@@ -25,7 +25,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         let username = 'Tchu_20' // usuario de acesso
         let passWord = '@Tchu523435' // senha
 
-        const browser = await firefox.launch({headless: false});
+        const browser = await chromium.launch({headless: false});
 
         const page = await browser.newPage();
 
@@ -35,7 +35,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
 
         await page.locator('.live-casino-slider-game__image').first().click();
 
-        await page.waitForTimeout(1000);
+        await page.waitForTimeout(3000);
 
         await page.locator('[placeholder="Usuário"]').click();
 
