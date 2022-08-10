@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 
-const { firefox, selectors } = require('playwright');
+const playwright = require('playwright');
 
 const {keyboard, mouse, down, imageResource} = require('@nut-tree/nut-js');
 
@@ -25,7 +25,7 @@ const { Telegraf }  = require('telegraf'); // API associada ao Telegram
         let username = 'Tchu_20' // usuario de acesso
         let passWord = '@Tchu523435' // senha
 
-        const browser = await firefox.launch({headless: false});
+        const browser = await playwright.chromium.launch({headless: false, channel: 'msedge'});
 
         const page = await browser.newPage();
 
