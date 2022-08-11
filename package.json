@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node ofuscator.js"
   },
   "keywords": [],
   "author": "",
@@ -13,12 +13,17 @@
   "dependencies": {
     "@nut-tree/nut-js": "^2.1.1",
     "dotenv-safe": "^8.2.0",
+    "file-system": "^2.2.2",
+    "gulp": "^4.0.2",
+    "gulp-ng-annotate": "^2.1.0",
+    "javascript-obfuscator": "^4.0.0",
     "playwright": "^1.23.4",
     "puppeteer": "^15.5.0",
     "telegraf": "^4.8.6"
   },
   "devDependencies": {
     "@playwright/test": "^1.23.4",
+    "gulp-javascript-obfuscator": "^1.1.6",
     "nodemon": "^2.0.19",
     "playwright-cli": "^0.180.0"
   }
